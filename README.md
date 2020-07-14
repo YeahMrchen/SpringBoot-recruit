@@ -2,27 +2,7 @@
 
 ## 项目预览
 
-### 登录界面
-
-<img src="/images/login.png" style="zoom:60%" />
-
-### 主页界面
-
-![](/images/index.png)
-
-### 职位列表界面
-
-![](/images/list.png)
-
-### 用户信息界面
-
-![](/images/userInfo.png)
-
-### 联系我们
-
-![](/images/send.png)
-
-
+**项目预览图请查看images目录下图片**
 
 
 
