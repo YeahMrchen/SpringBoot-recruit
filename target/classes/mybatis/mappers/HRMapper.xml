@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.recruit.mapper.HRMapper" >
+  <resultMap id="BaseResultMap" type="com.web.recruit.entity.HR" >
+    <id column="hr_id" property="hrId" jdbcType="INTEGER" />
+    <result column="hr_account" property="hrAccount" jdbcType="VARCHAR" />
+    <result column="hr_password" property="hrPassword" jdbcType="VARCHAR" />
+    <result column="hr_company_id" property="hrCompanyId" jdbcType="INTEGER" />
+    <result column="hr_name" property="hrName" jdbcType="VARCHAR" />
+    <result column="hr_gender" property="hrGender" jdbcType="INTEGER" />
+    <result column="hr_mobile" property="hrMobile" jdbcType="CHAR" />
+    <result column="hr_entry_date" property="hrEntryDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    hr_id, hr_account, hr_password, hr_company_id, hr_name, hr_gender, hr_mobile, hr_entry_date
+  </sql>
+  <select id="getHRById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hr
+    where hr_id = #{hrId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getHRByAccount" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from hr
+    where hr_account = #{hrAccount,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteHRById" parameterType="java.lang.Integer" >
+    delete from hr
+    where hr_id = #{hrId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertHR" parameterType="com.web.recruit.entity.HR" >
+    insert into hr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hrId != null" >
+        hr_id,
+      </if>
+      <if test="hrAccount != null" >
+        hr_account,
+      </if>
+      <if test="hrPassword != null" >
+        hr_password,
+      </if>
+      <if test="hrCompanyId != null" >
+        hr_company_id,
+      </if>
+      <if test="hrName != null" >
+        hr_name,
+      </if>
+      <if test="hrGender != null" >
+        hr_gender,
+      </if>
+      <if test="hrMobile != null" >
+        hr_mobile,
+      </if>
+      <if test="hrEntryDate != null" >
+        hr_endtry_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hrId != null" >
+        #{hrId,jdbcType=INTEGER},
+      </if>
+      <if test="hrAccount != null" >
+        #{hrAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="hrPassword != null" >
+        #{hrPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="hrCompanyId != null" >
+        #{hrCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="hrName != null" >
+        #{hrName,jdbcType=VARCHAR},
+      </if>
+      <if test="hrGender != null" >
+        #{hrGender,jdbcType=INTEGER},
+      </if>
+      <if test="hrMobile != null" >
+        #{hrMobile,jdbcType=CHAR},
+      </if>
+      <if test="hrEntryDate != null" >
+        #{hrEntryDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateHR" parameterType="com.web.recruit.entity.HR" >
+    update hr
+    <set >
+      <if test="hrAccount != null" >
+        hr_account = #{hrAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="hrPassword != null" >
+        hr_password = #{hrPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="hrCompanyId != null" >
+        hr_company_id = #{hrCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="hrName != null" >
+        hr_name = #{hrName,jdbcType=VARCHAR},
+      </if>
+      <if test="hrGender != null" >
+        hr_gender = #{hrGender,jdbcType=INTEGER},
+      </if>
+      <if test="hrMobile != null" >
+        hr_mobile = #{hrMobile,jdbcType=CHAR},
+      </if>
+      <if test="hrEntryDate != null" >
+        hr_entry_date = #{hrEntryDate,jdbcType=DATE},
+      </if>
+    </set>
+    where hr_id = #{hrId,jdbcType=INTEGER}
+  </update>
+</mapper>

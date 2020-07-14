@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>已通过申请</title>
+    <link rel="stylesheet" th:href="@{/sources/css/bootstrap.min.css}"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/sources/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/sources/css/base.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/sources/icon/iconfont.css}"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/sources/css/index.css}"/>
+    <link rel="stylesheet" th:href="@{/sources/css/job-content.css}"/>
+
+    <script th:src="@{/sources/js/jquery.js}"></script>
+    <script th:src="@{/sources/js/popper.min.js}"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script th:src="@{/sources/js/bootstrap.js}"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <div class="container row" id="header-vue-bind-div">
+            <a class="logo"></a>
+            <ul class="nav col-lg-8" style="text-align: center">
+                <!--<li class="address">全国</li>-->
+                <li class="nav_li current" style="margin: 20px;"><a class="nav_item" th:href="@{/hr/unHandle}">首页</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" href="http://zs.sicnu.edu.cn/(S(cir0ixjvv5klyiztg2s1nmgg))/index.aspx" target="_blank">川师校招</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" th:href="@{/position/toPublish}">发布职位</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" th:href="@{/toHRInfo}">个人信息</a></li>
+                <li class="nav_li" style="margin-top: 20px"><a class="nav_item" th:href="@{/logout}">退出</a></li>
+            </ul>
+
+        </div>
+    </div>
+    <script>
+        var headervue = new Vue({
+            el: '#header-vue-bind-div',
+            data: {
+                type: null,
+                person: {
+                    user: null,
+                    hr: null
+                }
+            }
+        });
+    </script>
+
+    <hr/>
+
+
+    <!--职位列表-->
+    <div class="job-list-container container">
+        <div class="jot-tab-content row">
+            <div class="line">
+                <ul class="col-md-4 no-margin-bottom">
+                    <li class="nav_item col-md-4"><a id="bySalary" th:href="@{/hr/unHandle}">待处理</a></li>
+                    <li class="nav_item col-md-4"><a style="color: #0C0C0C" id="byRelease" th:href="@{/hr/passed}">已通过</a></li>
+                    <li class="nav_item col-md-4"><a id="byHits" th:href="@{/hr/rejected}">已拒绝</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="job-summary-container container" id="posItem">
+
+            <div class="content job-content" >
+
+                <div class="col-lg-4 summary-border" th:each="map:${maps}">
+                    <div class="job-summary" style="height: 250px;">
+                        <div class="line-1 row" style="width: 400px">
+                            <div class="job-name col-md-9" style="font-size: 15px">申请岗位：<a href="">[[${map.position.positionName}]]</a>
+                                <span class="create-item" style="font-size: 13px"><br>
+                                    城市：[[${map.position.positionCity}]]<br>
+                                    地址：[[${map.position.positionAddress}]]<br>
+                                </span><hr/>
+                            </div>
+                            <div class="job-name col-md-9" style="font-size: 15px;">
+                                申请人：<span style="color: red">[[${map.user.userName}]]</span>
+                            </div>
+                        </div>
+
+                        <div class="line-3 job-tag-content row" style="margin-left: -58px">
+                            <ul>
+                                <li class="job-tag" style="width:170px;font-size: 13px;">出生年月：[[${#dates.format(map.user.userBirth, 'yyyy/MM/dd')}]]</li>
+                                <li class="job-tag" style="width:120px;font-size: 13px;">性别：[[${map.user.userGender==1?'男':'女'}]]</li>
+                                <li class="job-tag" style="width:170px;font-size: 13px;">毕业院校：[[${map.user.userGraduation}]]</li>
+                                <li class="job-tag" style="width:120px;font-size: 13px;">学历：[[${map.user.userEduDegree}]]</li>
+                            </ul>
+                        </div>
+
+                        <div class="line-2 job-require" style="font-size: 14px;"></div><br>
+                        <div class="line-2 job-require" style="font-size: 15px;"></div><br>
+                        <div class="text-right" style="font-size: 15px;">
+                            <form th:action="@{/hr/showResume}" method="post">
+                                <input name="userId" type="hidden" th:value="${map.user.userId}">
+                                <input name="positionId" type="hidden" th:value="${map.position.positionId}">
+                                <button class="btn btn-info" type="submit">查看简历</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--查看更多-->
+    <div class="container viewMoreContainer">
+        <div class="row">
+            <div class="viewMore" id="viewMoreButton" onclick="nextPage()">查看更多</div>
+        </div>
+    </div>
+    <!--//关于我们横线-->
+    <div class="job-list-container container">
+        <div class="jot-tab-content row">
+            <div class="line">
+                <ul class="col-md-4 no-margin-bottom">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--友情链接-->
+    <!--<div></div>-->
+</div>
+<script>
+    //    #TAB配置
+    $(".menu_box").hover(function () {
+        $(this).find(".menu_sub").removeClass("hidden");
+        $(this).find(".menu_sub").addClass("show");
+    }, function () {
+        $(this).find(".menu_sub").removeClass("show");
+        $(this).find(".menu_sub").addClass("hidden");
+    });
+
+    $('#myCarousel').carousel({
+        interval: 3000
+    })
+</script>
+<script th:src="@{/sources/js/search_list.js}"></script>
+</body>
+</html>

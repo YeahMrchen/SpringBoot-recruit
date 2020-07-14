@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.recruit.mapper.FavorMapper" >
+  <resultMap id="BaseResultMap" type="com.web.recruit.entity.Favor" >
+    <id column="favor_id" property="favorId" jdbcType="INTEGER" />
+    <result column="favor_position_id" property="favorPositionId" jdbcType="INTEGER" />
+    <result column="favor_resume_id" property="favorResumeId" jdbcType="INTEGER" />
+    <result column="favor_state" property="favorState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    favor_id, favor_position_id, favor_resume_id, favor_state
+  </sql>
+  <select id="getFavorById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from favor
+    where favor_id = #{favorId,jdbcType=INTEGER}
+  </select>
+  <select id="getFavorByResumeAndPositionId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from favor
+    where favor_resume_id = #{resumeId,jdbcType=INTEGER}
+    and favor_position_id = #{positionId,jdbcType=INTEGER}
+  </select>
+  <!-- 选出某简历的所有申请 -->
+  <select id="getFavorsByResumeId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from favor
+    where favor_resume_id = #{resumeId,jdbcType=INTEGER}
+  </select>
+  <!--  选出本公司所有的申请  -->
+  <select id="getFavorsByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from favor
+    where favor_position_id in
+      (select position_id
+      from position
+      where position_company_id = #{companyId,jdbcType=INTEGER})
+    order by favor_id desc
+  </select>
+  <!--  选出未审核的申请  -->
+  <select id="getUnprocessedFavors" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from favor
+    where favor_position_id in
+        (select position_id
+        from position
+        where position_company_id = #{companyId,jdbcType=INTEGER} and favor_state=0)
+    order by favor_id desc
+  </select>
+  <!--  选出批准的申请  -->
+  <select id="getPassedFavors" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from favor
+    where favor_position_id in
+      (select position_id
+      from position
+      where position_company_id = #{companyId,jdbcType=INTEGER} and favor_state=1)
+    order by favor_id desc
+  </select>
+  <!--  选出被拒绝的申请  -->
+  <select id="getRejectedFavors" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from favor
+    where favor_position_id in
+      (select position_id
+      from position
+      where position_company_id = #{companyId,jdbcType=INTEGER} and favor_state=-1)
+    order by favor_id desc
+  </select>
+  <delete id="deleteFavorById" parameterType="java.lang.Integer" >
+    delete from favor
+    where favor_id = #{favorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertFavor" parameterType="com.web.recruit.entity.Favor" >
+    insert into favor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="favorId != null" >
+        favor_id,
+      </if>
+      <if test="favorPositionId != null" >
+        favor_position_id,
+      </if>
+      <if test="favorResumeId != null" >
+        favor_resume_id,
+      </if>
+      <if test="favorState != null" >
+        favor_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="favorId != null" >
+        #{favorId,jdbcType=INTEGER},
+      </if>
+      <if test="favorPositionId != null" >
+        #{favorPositionId,jdbcType=INTEGER},
+      </if>
+      <if test="favorResumeId != null" >
+        #{favorResumeId,jdbcType=INTEGER},
+      </if>
+      <if test="favorState != null" >
+        #{favorState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateFavor">
+    update favor
+    <set >
+      <if test="favorState != null" >
+        favor_state = #{favorState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where favor_id = #{favorId,jdbcType=INTEGER}
+  </update>
+  <update id="passFavor">
+    update favor
+    set favor_state = 1
+    where favor_id = #{favorId,jdbcType=INTEGER}
+  </update>
+  <update id="rejectFavor">
+    update favor
+    set favor_state = -1
+    where favor_id = #{favorId,jdbcType=INTEGER}
+  </update>
+</mapper>

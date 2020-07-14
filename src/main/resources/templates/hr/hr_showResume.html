@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户简历</title>
+    <link rel="stylesheet" href="/sources/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/sources/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/sources/css/base.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/sources/icon/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/sources/css/job_details.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/sources/layer/css/layui.css}"/>
+    <link th:href="@{/sources/css/star-rating.css}" media="all" rel="stylesheet" type="text/css"/>
+
+    <script th:src="@{/sources/js/jquery.js}"></script>
+    <script th:src="@{/sources/js/popper.min.js}"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script th:src="@{/sources/js/bootstrap.js}"></script>
+    <script th:src="@{/sources/layer/layui.js}"></script>
+    <script th:src="@{/sources/js/star-rating.js}" type="text/javascript"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+
+        <div class="container row" id="header-vue-bind-div">
+            <a class="logo"></a>
+            <ul class="nav col-lg-8" style="text-align: center">
+                <!--<li class="address">全国</li>-->
+                <li class="nav_li current" style="margin: 20px;"><a class="nav_item" th:href="@{/hr/unHandle}">首页</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" href="http://zs.sicnu.edu.cn/(S(cir0ixjvv5klyiztg2s1nmgg))/index.aspx" target="_blank">川师校招</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" th:href="@{/position/toPublish}">发布职位</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" th:href="@{/toHRInfo}">个人信息</a></li>
+                <li class="nav_li" style="margin-top: 20px"><a class="nav_item" th:href="@{/logout}">退出</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <hr class="no-bottom"/>
+    <div id="position_content">
+        <div class="details_content">
+            <div class="job-header-content ">
+                <div class="job-header">
+                    <div class="job-name" style="font-size: 18px">
+                        姓名：[[${user.userName}]]
+                    </div>
+                    <div class="job-request">
+                        <p style="font-size: 15px">
+                            <span class="salary" style="margin-right: 125px">性别：[[${user.userGender==1?'男':'女'}]]</span>
+                            <span class="salary">出生年月：[[${#dates.format(user.userBirth,'yyyy/MM/dd')}]]</span><hr>
+                        </p>
+                        <p style="font-size: 15px">
+                            <span style="margin-right: 20px">毕业院校：[[${user.userGraduation}]]</span>
+                            <span>学历：[[${user.userEduDegree}]]</span><hr>
+                        </p>
+                        <ul class="position-label" >
+                            <li class="job-label" style="margin-left: -5px;font-size: 15px">大数据开发</li>
+                            <li class="job-label" style="font-size: 15px">软件开发</li>
+                        </ul>
+
+                    </div>
+                    <div class="position-content-r" style="max-width: 430px;">
+                        <div class="position-deal">
+                            <div th:hidden="${favor.favorState != 0}">
+                                <form th:action="@{/hr/accept}" th:method="post">
+                                    <input type="hidden" name="favorId" th:value="${favor.favorId}">
+                                    <button class="btn btn-info" type="submit" >接受</button>
+                                </form><br>
+                                <form th:action="@{/hr/reject}" method="post">
+                                    <input type="hidden" name="favorId" th:value="${favor.favorId}">
+                                    <button class="btn btn-warning" type="submit" >拒收</button>
+                                </form>
+                            </div>
+                            <div th:hidden="${favor.favorState != 1}">
+                                <button class="btn btn-success" disabled="disabled">已接受</button>
+                            </div>
+                            <div th:hidden="${favor.favorState != -1}">
+                                <button class="btn btn-danger" disabled="disabled">已拒收</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail container">
+            <div class="content_l">
+                <br class="job_detail">
+
+                <h4><b>一.个人介绍：</b></h4>
+                [[${resume.resumeContent}]]<br/><br>
+                <br/><h4><b>二.工作经验：</b></h4><br>
+                [[${resume.resumeWorkExperience}]]<br><br>
+                <br/><h4><b>三.工作期望:</b></h4>
+                [[${resume.resumeWorkDesire}]]
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <div class="job_publisher">
+
+                </div>
+
+                <script>
+                    var layedit;
+                    var index;
+                    layui.use('layedit', function () {
+                        layedit = layui.layedit;
+                        index = layedit.build('review-editor', {
+                            tool: ['strong'
+                                , 'italic' //斜体
+                                , 'underline' //下划线
+                                , 'del' //删除线
+                                , '|' //分割线
+                            ],
+                            height: 200
+                        }); //建立编辑器
+                    });
+                </script>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script th:src="@{/sources/js/position_detail.js}"></script>
+</div>
+</body>
+</html>

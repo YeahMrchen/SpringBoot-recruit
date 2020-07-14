@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>用户注册</title>
+
+
+    <!--[if lt IE 9]>
+    <script src="sources/js/html5shiv.js" th:src="@{/sources/js/html5shiv.js}"></script>
+    <![endif]-->
+
+    <link  th:href="@{/sources/css/normalize.css}" rel="stylesheet"/>
+    <link  th:href="@{/sources/css/jquery-ui.css}" rel="stylesheet"/>
+    <link  th:href="@{/sources/css/jquery.idealforms.min.css}" rel="stylesheet" media="screen"/>
+
+    <style type="text/css">
+        body{font:normal 15px/1.5 Arial, Helvetica, Free Sans, sans-serif;color: #222;background:url(pattern.png);overflow-y:scroll;padding:60px 0 0 0;}
+        #my-form{width:755px;margin:0 auto;border:1px solid #ccc;padding:3em;border-radius:3px;box-shadow:0 0 2px rgba(0,0,0,.2);}
+        #comments{width:350px;height:100px;}
+    </style>
+
+</head>
+<body>
+<div class="row">
+
+    <div class="eightcol last">
+
+        <h2 style="text-align:center;">注册</h2>
+        <!-- Begin Form -->
+
+        <form id="my-form" th:action="@{/user/register}" method="post">
+            <div style="text-align:center; color: red" th:if="${not #strings.isEmpty(err)}"><label>[[${err}]]</label></div>
+            <!-- <section name="第一步"> -->
+
+            <div style="text-align:center;"><label>账号:</label><input name="userAccount" type="text"/></div>
+            <div style="text-align:center;"><label>密码:</label><input name="userPassword" type="password"/></div>
+            <div style="text-align:center;"><label>姓名:</label><input name="userName"  type="text"/></div>
+            <div style="text-align:center;"><label>性别:</label>
+                <select name="userGender">
+                    <option selected="selected" value="-1">--选择性别--</option>
+                    <option value="1">男</option>
+                    <option value="0">女</option>
+                </select>
+            </div>
+            <div style="font-size: 14px;text-align: center;"><label>出生日期:</label><input name="userBirth" data-ideal="date" type="text" value="1900/00/00"/></div>
+            <div style="font-size: 14px;text-align: center;"><label>毕业院校:</label><input name="userGraduation" type="text"/></div>
+            <div style="text-align:center;"><label>学历:</label>
+                <select name="userEduDegree">
+                    <option>高中</option>
+                    <option>大专</option>
+                    <option selected="selected">本科</option>
+                    <option>研究生</option>
+                    <option>博士</option>
+                    <option>其他</option>
+                </select>
+            </div>
+
+            <div><hr/></div>
+
+            <div style="text-align:center;">
+                <button type="submit">提交</button>
+                <a th:href="@{toRegister}">重置</a>
+                <small style="margin-left: 100px">已有账号?</small><a th:href="@{/toUserLogin}" >&nbsp;点击登录</a>
+            </div>
+        </form>
+
+    </div>
+    <!-- End Form -->
+
+</div>
+
+</div>
+
+
+<script type="text/javascript" th:src="@{/sources/js/jquery-1.8.2.min.js}"></script>
+<script type="text/javascript" th:src="@{/sources/js/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/sources/js/jquery.idealforms.js}"></script>
+<script type="text/javascript">
+    var options = {
+
+        onFail: function(){
+            alert( $myform.getInvalid().length +' invalid fields.' )
+        },
+
+        inputs: {
+            'password': {
+                filters: 'required pass',
+            },
+            'username': {
+                filters: 'required username',
+                data: {
+                    //ajax: { url:'validate.php' }
+                }
+            },
+            'file': {
+                filters: 'extension',
+                data: { extension: ['jpg'] }
+            },
+            'comments': {
+                filters: 'min max',
+                data: { min: 50, max: 200 }
+            },
+            'states': {
+                filters: 'exclude',
+                data: { exclude: ['default'] },
+                errors : {
+                    exclude: '选择国籍.'
+                }
+            },
+            'langs[]': {
+                filters: 'min max',
+                data: { min: 2, max: 3 },
+                errors: {
+                    min: 'Check at least <strong>2</strong> options.',
+                    max: 'No more than <strong>3</strong> options allowed.'
+                }
+            }
+        }
+
+    };
+
+    var $myform = $('#my-form').idealforms(options).data('idealforms');
+
+    $('#reset').click(function(){
+        $myform.reset().fresh().focusFirst()
+    });
+
+    $myform.focusFirst();
+</script>
+
+</body>
+</html>

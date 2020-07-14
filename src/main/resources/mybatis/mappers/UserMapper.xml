@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.recruit.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.web.recruit.entity.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_account" property="userAccount" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_birth" property="userBirth" jdbcType="DATE" />
+    <result column="user_gender" property="userGender" jdbcType="INTEGER" />
+    <result column="user_graduation" property="userGraduation" jdbcType="VARCHAR" />
+    <result column="user_edu_degree" property="userEduDegree" jdbcType="VARCHAR" />
+    <result column="user_position_id" property="userPositionId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_account, user_password, user_name, user_birth, user_gender, user_graduation, 
+    user_edu_degree, user_position_id
+  </sql>
+  <select id="getUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="getUserByAccount" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_account = #{userAccount,jdbcType=VARCHAR}
+  </select>
+  <select id="getUserByResumeId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_id =
+    (select resume_user_id
+    from resume
+    where resume_id=#{resumeId,jdbcType=INTEGER})
+  </select>
+  <delete id="deleteUserById" parameterType="java.lang.Integer" >
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertUser" parameterType="com.web.recruit.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userAccount != null" >
+        user_account,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userBirth != null" >
+        user_birth,
+      </if>
+      <if test="userGender != null" >
+        user_gender,
+      </if>
+      <if test="userGraduation != null" >
+        user_graduation,
+      </if>
+      <if test="userEduDegree != null" >
+        user_edu_degree,
+      </if>
+      <if test="userPositionId != null" >
+        user_position_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userAccount != null" >
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirth != null" >
+        #{userBirth,jdbcType=DATE},
+      </if>
+      <if test="userGender != null" >
+        #{userGender,jdbcType=INTEGER},
+      </if>
+      <if test="userGraduation != null" >
+        #{userGraduation,jdbcType=VARCHAR},
+      </if>
+      <if test="userEduDegree != null" >
+        #{userEduDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="userPositionId != null" >
+        #{userPositionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateUser" parameterType="com.web.recruit.entity.User" >
+    update user
+    <set >
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirth != null" >
+        user_birth = #{userBirth,jdbcType=DATE},
+      </if>
+      <if test="userGender != null" >
+        user_gender = #{userGender,jdbcType=INTEGER},
+      </if>
+      <if test="userGraduation != null" >
+        user_graduation = #{userGraduation,jdbcType=VARCHAR},
+      </if>
+      <if test="userEduDegree != null" >
+        user_edu_degree = #{userEduDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="userPositionId != null" >
+        user_position_id = #{userPositionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>职位发布</title>
+
+
+    <!--[if lt IE 9]>
+    <script src="sources/js/html5shiv.js" th:src="@{/sources/js/html5shiv.js}"></script>
+    <![endif]-->
+
+    <link  th:href="@{/sources/css/normalize.css}" rel="stylesheet"/>
+    <link  th:href="@{/sources/css/jquery-ui.css}" rel="stylesheet"/>
+    <link  th:href="@{/sources/css/jquery.idealforms.min.css}" rel="stylesheet" media="screen"/>
+
+    <style type="text/css">
+        body{font:normal 15px/1.5 Arial, Helvetica, Free Sans, sans-serif;color: #222;background:url(/sources/css/img/pattern.png);overflow-y:scroll;padding:60px 0 0 0;}
+        #my-form{width:755px;margin:0 auto;border:1px solid #ccc;padding:3em;border-radius:3px;box-shadow:0 0 2px rgba(0,0,0,.2);}
+        #comments{width:350px;height:100px;}
+    </style>
+
+</head>
+<body>
+<div class="row">
+
+    <div class="eightcol last">
+
+        <h2 style="text-align:center;">发布职位</h2>
+        <!-- Begin Form -->
+
+        <form id="my-form"  th:action="@{/position/publish}" method="post">
+            <input name="positionCompanyId" hidden="hidden" th:value="${company.companyId}">
+            <div ><label>公司:</label><input disabled="disabled" type="text" th:value="${company.companyName}"/></div>
+            <div style="font-size: 15px;text-align: center;"><label>职位类别:</label>
+                <select name="positionCategoryId" >
+                    <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                </select>
+            </div>
+            <div style="font-size: 14px;text-align: center;"><label>职位名称:</label><input name="positionName"  type="text"/></div>
+            <div style="font-size: 14px;text-align: center;"><label>职位描述:</label>
+                <textarea name="positionDescription" class="form-control" rows="3"
+                          style="resize: none"></textarea>
+            </div>
+            <div style="font-size: 14px;text-align: center;"><label>招聘人数:</label><input name="positionQuantity"  type="number" style="width: 60px;"/></div>
+            <div style="font-size: 14px"><label>起薪 (月):</label>
+                <input name="positionSalaryDown"  type="number" style="width: 110px;"/>
+            </div>
+            <div style="font-size: 14px;text-align: center;"><label>最高:</label>
+                <input name="positionSalaryUp"  type="number" style="width: 110px;"/>
+            </div>
+            <div style="font-size: 14px;text-align: center;"><label>工作城市:</label><input name="positionCity" type="text"/></div>
+            <div style="font-size: 14px;text-align: center;"><label>地址:</label><input name="positionAddress" type="text" maxlength="30"/></div>
+
+            <div><hr/></div>
+
+            <div style="text-align:center;">
+                <button type="submit">提交</button>
+                <button id="reset" type="button">重置</button>
+            </div>
+        </form>
+
+    </div>
+    <!-- End Form -->
+
+</div>
+
+</div>
+
+
+<script type="text/javascript" th:src="@{/sources/js/jquery-1.8.2.min.js}"></script>
+<script type="text/javascript" th:src="@{/sources/js/jquery-ui.min.js}"></script>
+<script type="text/javascript" th:src="@{/sources/js/jquery.idealforms.js}"></script>
+<script type="text/javascript">
+    var options = {
+
+        onFail: function(){
+            alert( $myform.getInvalid().length +' invalid fields.' )
+        },
+
+        inputs: {
+            'password': {
+                filters: 'required pass',
+            },
+            'username': {
+                filters: 'required username',
+                data: {
+                    //ajax: { url:'validate.php' }
+                }
+            },
+            'file': {
+                filters: 'extension',
+                data: { extension: ['jpg'] }
+            },
+            'comments': {
+                filters: 'min max',
+                data: { min: 50, max: 200 }
+            },
+            'states': {
+                filters: 'exclude',
+                data: { exclude: ['default'] },
+                errors : {
+                    exclude: '选择国籍.'
+                }
+            },
+            'langs[]': {
+                filters: 'min max',
+                data: { min: 2, max: 3 },
+                errors: {
+                    min: 'Check at least <strong>2</strong> options.',
+                    max: 'No more than <strong>3</strong> options allowed.'
+                }
+            }
+        }
+
+    };
+
+    var $myform = $('#my-form').idealforms(options).data('idealforms');
+
+    $('#reset').click(function(){
+        $myform.reset().fresh().focusFirst()
+    });
+
+    $myform.focusFirst();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>hr个人信息</title>
+    <link rel="stylesheet" th:href="@{/sources/css/bootstrap.min.css}"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script th:src="@{/sources/js/jquery.js}"></script>
+    <script th:src="@{/sources/js/popper.min.js}"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/sources/css/bootstrap.css}"/>
+    <script th:src="@{/sources/js/bootstrap.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/sources/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/sources/css/user-center.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/sources/icon/iconfont.css}"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/sources/css/index.css}"/>
+
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+
+        <div class="container row" id="header-vue-bind-div">
+            <a class="logo"></a>
+            <ul class="nav col-lg-8" style="text-align: center">
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" th:href="@{/hr/unHandle}">首页</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" href="http://zs.sicnu.edu.cn/(S(cir0ixjvv5klyiztg2s1nmgg))/index.aspx" target="_blank">川师校招</a></li>
+                <li class="nav_li" style="margin: 20px;"><a class="nav_item" th:href="@{/position/toPublish}">发布职位</a></li>
+                <li class="nav_li current" style="margin: 20px"><a class="nav_item" th:href="@{/toHRInfo}">个人信息</a></li>
+                <li class="nav_li" style="margin-top: 20px"><a class="nav_item" th:href="@{/logout}">退出</a></li>
+            </ul>
+
+        </div>
+        <!--script-->
+        <script>
+            var header = new Vue({
+                el: '#header-vue-bind-div',
+                data: {
+                    type: null,
+                    person: {
+                        user: null,
+                        hr: null
+                    }
+
+                }
+            });
+        </script>
+    </div>
+
+    <hr/>
+
+    <div class="main container" id="vue-dom">
+        <div class="page-header row">
+            <h2 class="col-lg-6 ">个人资料设置
+
+            </h2>
+        </div>
+        <div class="nav-content col-lg-3">
+            <div class="list-group">
+                <a class="list-group-item" href="#info">个人资料</a>
+                    <!--<span class="badge">0</span>-->
+            </div>
+
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>公司介绍</h3>
+                    <p>[[${company.companyDescription}]]</p>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <div class="main_content" id="info">
+            <form id="user_info" th:action="@{/hr/updateInfo}" th:method="post">
+                <div class="container">
+                    <input name="hrId" type="hidden" th:value="${hr.hrId}">
+                    <div class="line1">
+                        <div class=" col-lg-4 l">
+                            <div class=" row">
+                                <label for="tel" >HR账号：</label>
+                                <input type="text"  id="tel" name="hrAccount" disabled="disabled"
+                                       th:placeholder="${hr.hrAccount}" maxlength="11">
+                            </div>
+                        </div>
+
+                        <div class=" col-lg-4 l">
+                            <div class=" row">
+                                <label for="school" >公司名称：</label>
+                                <input type="text" id="school" name="hrCompanyName" disabled="disabled"
+                                       th:value="${company.companyName}">
+                            </div><br>
+                        </div>
+
+                        <div class=" col-lg-4 l">
+                            <div class=" row">
+                                <label for="password" >手机号码：</label>
+                                <input type="text"  id="mobile" name="hrMobile"
+                                       required th:value="${hr.hrMobile}">
+                            </div><br>
+                        </div><br>
+
+                        <div class=" col-lg-4 l">
+                            <div class=" row">
+                                <label for="password" >密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                                <input type="password"  id="password" name="hrPassword"
+                                       required th:value="${hr.hrPassword}">
+                            </div><br>
+                        </div>
+                    </div>
+
+
+                    <div class="line2">
+                        <div class=" col-lg-4 l">
+                            <div class=" row">
+                                <label for="inputName">真实姓名：</label>
+                                <input type="text" id="inputName" name="hrName"
+                                       th:value="${hr.hrName}">
+                            </div><br>
+                        </div>
+                        <div class="col-lg-4 l">
+                            <div class=" row">
+                                <label for="sex" >真实性别：</label>
+                                <select id="sex" name="hrGender" >
+                                    <option value="1" th:checked="${hr.hrGender==1}">男</option>
+                                    <option value="0" th:checked="${hr.hrGender==0}">女</option>
+                                </select>
+                            </div><br>
+                        </div>
+
+                        <div class=" col-lg-4 l">
+                            <div class="row">
+                                <label for="Birth">入职日期: </label>
+                                <input id="Birth" name="hrEntryDate" data-ideal="date" type="text" style="margin-left: 10px"
+                                       th:value="${#dates.format(hr.hrEntryDate, 'yyyy/MM/dd')}">
+                            </div><hr/>
+                        </div>
+
+                    </div>
+
+                    <div class="line2">
+
+                        <div class=" col-lg-4 l" style="text-align: left">
+                            <div class=" row">
+                                <div ></div>
+                                <a class="btn btn-primary col-lg-6" href="" role="button"
+                                   onclick="location.reload()" >重置</a>
+                            </div>
+                        </div>
+                        <div class=" col-lg-4 l">
+                            <div class=" row">
+                                <div ></div>
+                                <a class="btn btn-primary col-lg-6 " href="" role="button" data-toggle="modal"
+                                   data-target="#myModal">保存</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">确认框</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>您真的要更改信息么？</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="submit" class="btn btn-primary" id="info_submit">确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script th:src="@{/sources/js/user_info.js}"></script>
+</div>
+</body>
+</html>

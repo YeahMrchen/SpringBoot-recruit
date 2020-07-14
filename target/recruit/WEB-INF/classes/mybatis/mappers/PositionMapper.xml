@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.recruit.mapper.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.web.recruit.entity.Position" >
+    <id column="position_id" property="positionId" jdbcType="INTEGER" />
+    <result column="position_company_id" property="positionCompanyId" jdbcType="INTEGER" />
+    <result column="position_category_id" property="positionCategoryId" jdbcType="INTEGER" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="position_quantity" property="positionQuantity" jdbcType="INTEGER" />
+    <result column="position_description" property="positionDescription" jdbcType="LONGVARCHAR" />
+    <result column="position_salary_down" property="positionSalaryDown" jdbcType="INTEGER"/>
+    <result column="position_salary_Up" property="positionSalaryUp" jdbcType="INTEGER"/>
+    <result column="position_city" property="positionCity" jdbcType="VARCHAR" />
+    <result column="position_address" property="positionAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    position_id, position_company_id, position_category_id,
+    position_name, position_quantity, position_description,
+    position_salary_down, position_salary_up,
+    position_city, position_address
+  </sql>
+  <select id="getPositionById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from position
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </select>
+  <select id="getPositionsByCategoryId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List"/>
+    from position
+    where position_category_id = #{position_category_id,jdbcType=INTEGER}
+  </select>
+  <select id="getPositionsByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List"/>
+    from position
+    where position_company_id = #{position_company_id,jdbcType=INTEGER}
+  </select>
+  <select id="getPositionsByKey" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from position
+    where position_name like concat('%', #{position_name,jdbcType=VARCHAR}, '%')
+  </select>
+  <select id="getPositions" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from position
+  </select>
+  <delete id="deletePositionById" parameterType="java.lang.Integer" >
+    delete from position
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertPosition" parameterType="com.web.recruit.entity.Position" >
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="positionCompanyId != null" >
+        position_company_id,
+      </if>
+      <if test="positionCategoryId != null" >
+        position_category_id,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="positionQuantity != null" >
+        position_quantity,
+      </if>
+      <if test="positionDescription != null" >
+        position_description,
+      </if>
+      <if test="positionSalaryDown != null" >
+        position_salary_down,
+      </if>
+      <if test="positionSalaryUp != null" >
+        position_salary_up,
+      </if>
+      <if test="positionCity != null" >
+        position_city,
+      </if>
+      <if test="positionAddress != null" >
+        position_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="positionCompanyId != null" >
+        #{positionCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="positionCategoryId != null" >
+        #{positionCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionQuantity != null" >
+        #{positionQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="positionDescription != null" >
+        #{positionDescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="positionSalaryDown != null" >
+        #{positionSalaryDown,jdbcType=INTEGER},
+      </if>
+      <if test="positionSalaryUp != null" >
+        #{positionSalaryUp,jdbcType=INTEGER},
+      </if>
+      <if test="positionCity != null" >
+        #{positionCity,jdbcType=VARCHAR},
+      </if>
+      <if test="positionAddress != null" >
+        #{positionAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updatePosition" parameterType="com.web.recruit.entity.Position" >
+    update position
+    <set >
+      <if test="positionCompanyId != null" >
+        position_company_id = #{positionCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="positionCategoryId != null" >
+        position_category_id = #{positionCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionQuantity != null" >
+        position_quantity = #{positionQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="positionDescription != null" >
+        position_description = #{positionDescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="positionSalaryDown != null" >
+        position_salery_down = #{positionSalaryDown,jdbcType=INTEGER},
+      </if>
+      <if test="positionSalaryUp != null" >
+        position_salery_up = #{positionSalaryUp,jdbcType=INTEGER},
+      </if>
+      <if test="positionCity != null" >
+        position_city = #{positionCity,jdbcType=VARCHAR},
+      </if>
+      <if test="positionAddress != null" >
+        position_address = #{positionAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where position_id = #{positionId,jdbcType=INTEGER}
+  </update>
+</mapper>

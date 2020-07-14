@@ -1,0 +1,55 @@
+server:
+  servlet:
+    context-path: /recruit
+
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true  #配置Restful风格请求
+  thymeleaf:
+    cache: false  #取消缓存
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/web_recruit?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: xxxxx
+    initialization-mode: always
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j  #log4j已弃用，SpingBoot底层为slf4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  redis:
+    host: xxxxxx
+    password: xxxxxx
+    port: 6379
+    database: 1
+  servlet:
+    multipart:
+      max-request-size: 2MB
+      max-file-size: 10MB
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/mappers/*.xml
+  type-aliases-package: com.web.recruit.entity
+logging:
+  file:
+    path: log/
+

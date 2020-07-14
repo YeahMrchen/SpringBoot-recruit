@@ -1,0 +1,85 @@
+2020-07-13 11:50:53.798  INFO 13104 --- [main] com.web.recruit.RecruitApplication       : Starting RecruitApplication on DESKTOP-D7Q15IE with PID 13104 (D:\IDEA_\SpringBoot-plus\web_recruit_final\target\classes started by TRacy in D:\IDEA_\SpringBoot-plus\web_recruit_final)
+2020-07-13 11:50:53.806  INFO 13104 --- [main] com.web.recruit.RecruitApplication       : No active profile set, falling back to default profiles: default
+2020-07-13 11:50:55.078  INFO 13104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-13 11:50:55.082  INFO 13104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-07-13 11:50:55.148  INFO 13104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 0 Redis repository interfaces.
+2020-07-13 11:50:55.939  INFO 13104 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-07-13 11:50:55.953  INFO 13104 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-13 11:50:55.954  INFO 13104 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-13 11:50:55.956  INFO 13104 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-07-13 11:50:55.957  INFO 13104 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-07-13 11:50:55.957  INFO 13104 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-07-13 11:50:55.963  INFO 13104 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-07-13 11:50:56.144  INFO 13104 --- [main] o.a.c.c.C.[.[localhost].[/recruit]       : Initializing Spring embedded WebApplicationContext
+2020-07-13 11:50:56.145  INFO 13104 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2270 ms
+2020-07-13 11:50:57.307  INFO 13104 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-13 11:50:57.701  INFO 13104 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/recruit'
+2020-07-13 11:50:57.713  INFO 13104 --- [main] com.web.recruit.RecruitApplication       : Started RecruitApplication in 4.504 seconds (JVM running for 5.779)
+2020-07-13 11:51:24.101  INFO 2392 --- [main] com.web.recruit.RecruitApplication       : Starting RecruitApplication on DESKTOP-D7Q15IE with PID 2392 (D:\IDEA_\SpringBoot-plus\web_recruit_final\target\classes started by TRacy in D:\IDEA_\SpringBoot-plus\web_recruit_final)
+2020-07-13 11:51:24.104  INFO 2392 --- [main] com.web.recruit.RecruitApplication       : No active profile set, falling back to default profiles: default
+2020-07-13 11:51:25.179  INFO 2392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-13 11:51:25.181  INFO 2392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-07-13 11:51:25.224  INFO 2392 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32ms. Found 0 Redis repository interfaces.
+2020-07-13 11:51:25.803  INFO 2392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-07-13 11:51:25.811  INFO 2392 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-13 11:51:25.812  INFO 2392 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-13 11:51:25.813  INFO 2392 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-07-13 11:51:25.814  INFO 2392 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-07-13 11:51:25.814  INFO 2392 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-07-13 11:51:25.819  INFO 2392 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-07-13 11:51:25.992  INFO 2392 --- [main] o.a.c.c.C.[.[localhost].[/recruit]       : Initializing Spring embedded WebApplicationContext
+2020-07-13 11:51:25.992  INFO 2392 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1827 ms
+2020-07-13 11:51:26.911  INFO 2392 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-13 11:51:27.257  INFO 2392 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/recruit'
+2020-07-13 11:51:27.269  INFO 2392 --- [main] com.web.recruit.RecruitApplication       : Started RecruitApplication in 3.8 seconds (JVM running for 4.827)
+2020-07-13 11:51:46.019  INFO 2392 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/recruit]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-13 11:51:46.021  INFO 2392 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-13 11:51:46.032  INFO 2392 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2020-07-13 11:51:47.031  WARN 2392 --- [http-nio-8080-exec-6] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [291] milliseconds.
+2020-07-13 11:51:53.698  INFO 2392 --- [http-nio-8080-exec-10] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-07-13 11:58:37.160  INFO 14148 --- [main] com.web.recruit.RecruitApplication       : Starting RecruitApplication on DESKTOP-D7Q15IE with PID 14148 (D:\IDEA_\SpringBoot-plus\web_recruit_final\target\classes started by TRacy in D:\IDEA_\SpringBoot-plus\web_recruit_final)
+2020-07-13 11:58:37.163  INFO 14148 --- [main] com.web.recruit.RecruitApplication       : No active profile set, falling back to default profiles: default
+2020-07-13 11:58:37.929  INFO 14148 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-13 11:58:37.931  INFO 14148 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-07-13 11:58:37.980  INFO 14148 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37ms. Found 0 Redis repository interfaces.
+2020-07-13 11:58:38.556  INFO 14148 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-07-13 11:58:38.564  INFO 14148 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-13 11:58:38.564  INFO 14148 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-13 11:58:38.566  INFO 14148 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-07-13 11:58:38.566  INFO 14148 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-07-13 11:58:38.567  INFO 14148 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-07-13 11:58:38.569  INFO 14148 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-07-13 11:58:38.680  INFO 14148 --- [main] o.a.c.c.C.[.[localhost].[/recruit]       : Initializing Spring embedded WebApplicationContext
+2020-07-13 11:58:38.680  INFO 14148 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1464 ms
+2020-07-13 11:58:39.498  INFO 14148 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-13 11:58:39.849  INFO 14148 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/recruit'
+2020-07-13 11:58:39.860  INFO 14148 --- [main] com.web.recruit.RecruitApplication       : Started RecruitApplication in 3.159 seconds (JVM running for 4.292)
+2020-07-13 11:58:43.977  INFO 14148 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/recruit]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-13 11:58:43.979  INFO 14148 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-13 11:58:44.012  INFO 14148 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 33 ms
+2020-07-13 11:58:44.281  WARN 14148 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [241] milliseconds.
+2020-07-13 11:58:55.758  INFO 14148 --- [http-nio-8080-exec-5] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-07-13 12:35:47.514  INFO 20500 --- [main] com.web.recruit.RecruitApplication       : Starting RecruitApplication on DESKTOP-D7Q15IE with PID 20500 (D:\IDEA_\SpringBoot-plus\web_recruit_final\target\classes started by TRacy in D:\IDEA_\SpringBoot-plus\web_recruit_final)
+2020-07-13 12:35:47.516  INFO 20500 --- [main] com.web.recruit.RecruitApplication       : No active profile set, falling back to default profiles: default
+2020-07-13 12:35:56.287  INFO 17852 --- [main] com.web.recruit.RecruitApplication       : Starting RecruitApplication on DESKTOP-D7Q15IE with PID 17852 (D:\IDEA_\SpringBoot-plus\web_recruit_final\target\classes started by TRacy in D:\IDEA_\SpringBoot-plus\web_recruit_final)
+2020-07-13 12:35:56.289  INFO 17852 --- [main] com.web.recruit.RecruitApplication       : No active profile set, falling back to default profiles: default
+2020-07-13 12:35:57.006  INFO 17852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-07-13 12:35:57.008  INFO 17852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-07-13 12:35:57.048  INFO 17852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29ms. Found 0 Redis repository interfaces.
+2020-07-13 12:35:57.641  INFO 17852 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-07-13 12:35:57.649  INFO 17852 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-13 12:35:57.650  INFO 17852 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-13 12:35:57.650  INFO 17852 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-07-13 12:35:57.650  INFO 17852 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-07-13 12:35:57.650  INFO 17852 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-07-13 12:35:57.653  INFO 17852 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-07-13 12:35:57.761  INFO 17852 --- [main] o.a.c.c.C.[.[localhost].[/recruit]       : Initializing Spring embedded WebApplicationContext
+2020-07-13 12:35:57.761  INFO 17852 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1425 ms
+2020-07-13 12:35:58.725  INFO 17852 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-13 12:35:59.147  INFO 17852 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/recruit'
+2020-07-13 12:35:59.156  INFO 17852 --- [main] com.web.recruit.RecruitApplication       : Started RecruitApplication in 3.327 seconds (JVM running for 4.398)
+2020-07-13 12:36:04.577  INFO 17852 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/recruit]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-13 12:36:04.578  INFO 17852 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-13 12:36:04.586  INFO 17852 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-07-13 12:36:04.940  WARN 17852 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [333] milliseconds.
+2020-07-13 12:36:27.595  INFO 17852 --- [http-nio-8080-exec-7] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited

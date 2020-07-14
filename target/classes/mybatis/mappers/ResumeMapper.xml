@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.recruit.mapper.ResumeMapper" >
+  <resultMap id="BaseResultMap" type="com.web.recruit.entity.Resume" >
+    <id column="resume_id" property="resumeId" jdbcType="INTEGER" />
+    <result column="resume_user_id" property="resumeUserId" jdbcType="INTEGER" />
+    <result column="resume_content" property="resumeContent" jdbcType="LONGVARCHAR" />
+    <result column="resume_work_desire" property="resumeWorkDesire" jdbcType="LONGVARCHAR" />
+    <result column="resume_work_experience" property="resumeWorkExperience" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resume_id, resume_user_id, resume_content, resume_work_desire, resume_work_experience
+  </sql>
+  <select id="getResumeByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from resume
+    where resume_user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteResumeByUserId" parameterType="java.lang.Integer" >
+    delete from resume
+    where resume_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertResume" parameterType="com.web.recruit.entity.Resume" >
+    insert into resume
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resumeId != null" >
+        resume_id,
+      </if>
+      <if test="resumeUserId != null" >
+        resume_user_id,
+      </if>
+      <if test="resumeContent != null" >
+        resume_content,
+      </if>
+      <if test="resumeWorkDesire != null" >
+        resume_work_desire,
+      </if>
+      <if test="resumeWorkExperience != null" >
+        resume_work_experience,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resumeId != null" >
+        #{resumeId,jdbcType=INTEGER},
+      </if>
+      <if test="resumeUserId != null" >
+        #{resumeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="resumeContent != null" >
+        #{resumeContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="resumeWorkDesire != null" >
+        #{resumeWorkDesire,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="resumeWorkExperience != null" >
+        #{resumeWorkExperience,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateResume" parameterType="com.web.recruit.entity.Resume" >
+    update resume
+    <set>
+      <if test="resumeContent != null" >
+        resume_content = #{resumeContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="resumeWorkDesire != null" >
+        resume_work_desire = #{resumeWorkDesire,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="resumeWorkExperience != null" >
+        resume_work_experience = #{resumeWorkExperience,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where resume_user_id = #{resumeUserId,jdbcType=INTEGER}
+  </update>
+</mapper>
