@@ -4,23 +4,23 @@
 
 ### 登录界面
 
-<img src="https://github.com/Tracyyy-s/SpringBoot-recruit.git/raw/master/images/login.png" style="zoom:60%" />
+<img src="/images/login.png" style="zoom:60%" />
 
 ### 主页界面
 
-![](https://github.com/Tracyyy-s/SpringBoot-recruit.git/raw/master/images/index.png)
+![](/images/index.png)
 
 ### 职位列表界面
 
-![](https://github.com/Tracyyy-s/SpringBoot-recruit.git/raw/master/images/list.png)
+![](/images/list.png)
 
 ### 用户信息界面
 
-![](https://github.com/Tracyyy-s/SpringBoot-recruit.git/raw/master/images/userInfo.png)
+![](/images/userInfo.png)
 
 ### 联系我们
 
-![](https://github.com/Tracyyy-s/SpringBoot-recruit.git/raw/master/images/send.png)
+![](/images/send.png)
 
 
 
